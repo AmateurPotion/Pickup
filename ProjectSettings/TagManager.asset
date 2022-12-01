@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Wall
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: GroundMap
+    uniqueID: 3924145941
+    locked: 0
+  - name: StructureMap
+    uniqueID: 3801146731
+    locked: 0
+  - name: Entity
+    uniqueID: 1020549481
+    locked: 0
+  - name: Effect
+    uniqueID: 2452171299
+    locked: 0
+  - name: Player
+    uniqueID: 698602319
+    locked: 0
