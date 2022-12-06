@@ -371,7 +371,7 @@ MonoBehaviour:
   uuid: 
   nullTileBase: {fileID: 0}
   groundRef:
-    m_LabelString: Ground
+    m_LabelString: Tiles
   grounds:
     m_keys: []
     m_values: []

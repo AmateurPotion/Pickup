@@ -11,13 +11,13 @@ namespace Pickup.World
 
         internal int[] tileMapData;
         internal int[] structureIDData;
-        internal Dictionary<string,IConvertible>[] structureData;
+        internal Dictionary<string, dynamic>[] structureData;
         
         public FieldChunk(int baseTileId)
         {
             tileMapData = Enumerable.Repeat(baseTileId, Size * Size).ToArray();
             structureIDData = Enumerable.Repeat(0, Size * Size).ToArray();
-            structureData = Enumerable.Repeat<Dictionary<string,IConvertible>>(null, Size * Size).ToArray();
+            structureData = Enumerable.Repeat<Dictionary<string, dynamic>>(null, Size * Size).ToArray();
         }
 
         public FieldChunk(RuleTile baseTile) : this(baseTile.name.GetHashCode())

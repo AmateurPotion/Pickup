@@ -28,7 +28,7 @@ namespace Pickup
         [Header("Types")] 
         public TileBase nullTileBase;
         public AssetLabelReference groundRef = new (){labelString = "Ground"};
-        public SerializableDictionary<string, GroundC> grounds = new();
+        public SerializableDictionary<string, RuleTile> grounds = new();
         public AssetLabelReference structureRef = new(){labelString = "Structure"};
         public SerializableDictionary<string, StructureC> structures = new();
 
@@ -55,7 +55,7 @@ namespace Pickup
             // load && alloc contents
             var loadTasks = new List<AsyncOperationHandle>();
 
-            loadTasks.Add(Addressables.LoadAssetsAsync<GroundC>(groundRef, config =>
+            loadTasks.Add(Addressables.LoadAssetsAsync<RuleTile>(groundRef, config =>
             {
                 grounds[config.name] = config;
             }));
@@ -71,7 +71,7 @@ namespace Pickup
                 task.WaitForCompletion();
                 switch (task.Result)
                 {
-                    case List<GroundC> list:
+                    case List<RuleTile> list:
                     {
                         Debug.Log($"Grounds {list.Count} loaded");
                         break;

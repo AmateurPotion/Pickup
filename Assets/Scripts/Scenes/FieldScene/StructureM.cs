@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Pickup.Configs.Buildable.Structure;
 using Pickup.World;
-using Pickup.World.Structures;
 using Unity.Collections;
 using UnityEngine;
 
@@ -8,9 +9,9 @@ namespace Pickup.Scenes.FieldScene
 {
     public partial class StructureM : MonoBehaviour
     {
-        private Structure _type;
+        private StructureC _type;
 
-        public Structure type
+        public StructureC type
         {
             get => _type;
             set
@@ -27,7 +28,7 @@ namespace Pickup.Scenes.FieldScene
 
         private void Update()
         {
-            if (type.update) type.Update(this);
+            if (type.update) type.UpdateO(this);
         }
     }
 }

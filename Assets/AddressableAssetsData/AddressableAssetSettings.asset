@@ -93,6 +93,8 @@ MonoBehaviour:
     - Preload
     - Locale-en-US
     - Locale-ko-KR
+    - Structure
+    - Tiles
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: e7e5b3d7761f4d9469f5ff23e4b4a6f6, type: 2}
