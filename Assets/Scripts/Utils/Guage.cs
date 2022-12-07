@@ -18,9 +18,9 @@ namespace Pickup.Utils
             {
                 T t = value.CompareTo(min) < 0 ? min :
                     value.CompareTo(max) > 0 ? max : value;
-                if (!t.Equals(this._value))
+                if (!t.Equals(_value))
                 {
-                    this._value = t;
+                    _value = t;
                     onChange?.Invoke(this);
                 }
             }

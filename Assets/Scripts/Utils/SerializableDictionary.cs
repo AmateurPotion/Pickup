@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 using UnityEngine;
@@ -32,7 +31,7 @@ namespace Pickup.Utils
 
 		public void CopyFrom(IDictionary<TKey, TValue> dict)
 		{
-			this.Clear();
+			Clear();
 			foreach (var kvp in dict)
 			{
 				this[kvp.Key] = kvp.Value;
@@ -43,7 +42,7 @@ namespace Pickup.Utils
 		{
 			if(m_keys != null && m_values != null && m_keys.Length == m_values.Length)
 			{
-				this.Clear();
+				Clear();
 				int n = m_keys.Length;
 				for(int i = 0; i < n; ++i)
 				{
@@ -58,7 +57,7 @@ namespace Pickup.Utils
 
 		public void OnBeforeSerialize()
 		{
-			int n = this.Count;
+			int n = Count;
 			m_keys = new TKey[n];
 			m_values = new TValueStorage[n];
 
