@@ -15,7 +15,7 @@ namespace Pickup.Net
         private static GameObject hostIOPrefab => Vars.Instance.networkPrefabs["HostIO"];
         private static GameObject clientIOPrefab => Vars.Instance.networkPrefabs["ClientIO"];
 
-        public static readonly ushort DefaultPort = 7777;
+        public const ushort DefaultPort = 7777;
 
         public static bool Connect(string address) => Connect(address, DefaultPort);
         protected static bool Connect(string address, ushort port)

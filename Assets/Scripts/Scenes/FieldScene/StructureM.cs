@@ -1,24 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using Pickup.Configs.Buildable.Structure;
 using Pickup.Utils.Tags;
-using Pickup.World;
-using Unity.Collections;
 using UnityEngine;
 
 namespace Pickup.Scenes.FieldScene
 {
     public partial class StructureM : MonoBehaviour
     {
-        private StructureC _type;
+        private StructureC m_Type;
 
         public StructureC type
         {
-            get => _type;
+            get => m_Type;
             set
             {
                 value.Check(this);
-                _type = value;
+                m_Type = value;
             }
         }
 
@@ -27,9 +24,14 @@ namespace Pickup.Scenes.FieldScene
             ["health"] = 100
         };
 
+        private void Start()
+        {
+            Debug.Log("H");
+        }
+
         private void Update()
         {
-            if (type.update) type.UpdateO(this);
+            if (m_Type && type.update) type.UpdateO(this);
         }
     }
 }

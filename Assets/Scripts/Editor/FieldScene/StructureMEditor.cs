@@ -14,38 +14,22 @@ public class StructureMEditor : Editor
     {
         base.OnInspectorGUI();
         var targetComponent = (StructureM)target;
+        var typeName = targetComponent.type ? targetComponent.type.GetType().Name : "undefined";
         
-        GUILayout.Label($"Structure type / {targetComponent.type.GetType().Name}");
+        GUILayout.Label($"Structure type / {typeName}");
         
         m_Queue.Clear();
         
         foreach (var pair in targetComponent.tags)
         {
-            dynamic value = null;
-
-            switch (targetComponent.tags[pair.Key])
+            dynamic value = targetComponent.tags[pair.Key] switch
             {
-                case int obj:
-                {
-                    value = EditorGUILayout.IntField(pair.Key, obj);
-                    break;
-                }
+                int obj => EditorGUILayout.IntField(pair.Key, obj),
+                string obj => EditorGUILayout.TextField(pair.Key, obj),
+                Object obj => EditorGUILayout.ObjectField(pair.Key, obj, obj.GetType(), true),
+                _ => null
+            };
 
-                case string obj:
-                {
-                    value = EditorGUILayout.TextField(pair.Key, obj);
-                    break;
-                }
-
-                case Object obj:
-                {
-                    value = EditorGUILayout.ObjectField(pair.Key, obj, obj.GetType(), true);
-                    break;
-                }
-            }
-            
-            
-            
             m_Queue.Enqueue(new(pair.Key, value));
         }
 

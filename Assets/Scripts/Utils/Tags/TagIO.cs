@@ -2,10 +2,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
+using JetBrains.Annotations;
 
 namespace Pickup.Utils.Tags
 {
@@ -328,8 +330,8 @@ namespace Pickup.Utils.Tags
 
         private class ClassPayloadHandler<T> : PayloadHandler<T> where T : class
         {
-            private Func<T, T> clone;
-            private Func<T>? makeDefault;
+            private readonly Func<T, T> m_Clone;
+            private Func<T>? m_MakeDefault;
 
             public ClassPayloadHandler(
                 Func<BinaryReader, T> reader,
@@ -338,15 +340,14 @@ namespace Pickup.Utils.Tags
                 Func<T>? makeDefault = null)
                 : base(reader, writer)
             {
-                this.clone = clone;
-                this.makeDefault = makeDefault;
+                m_Clone = clone;
+                m_MakeDefault = makeDefault;
             }
 
-            public override object Clone(object o) => clone((T)o);
-
-            public override IList CloneList(IList<T> list) => list.Select(clone).ToList();
-
-            public override object Default() => makeDefault();
+            public override object Clone(object o) => m_Clone((T)o);
+            public override IList CloneList(IList<T> list) => list.Select(m_Clone).ToList();
+            
+            public override object Default() => m_MakeDefault();
         }
     }
 }
