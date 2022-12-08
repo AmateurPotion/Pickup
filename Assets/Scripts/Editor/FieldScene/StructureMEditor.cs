@@ -19,11 +19,11 @@ public class StructureMEditor : Editor
         
         m_Queue.Clear();
         
-        foreach (var pair in targetComponent.statCollection)
+        foreach (var pair in targetComponent.tags)
         {
             dynamic value = null;
 
-            switch (targetComponent.statCollection[pair.Key])
+            switch (targetComponent.tags[pair.Key])
             {
                 case int obj:
                 {
@@ -51,7 +51,7 @@ public class StructureMEditor : Editor
 
         while (m_Queue.TryDequeue(out var pair))
         {
-            targetComponent.statCollection[pair.Key] = pair.Value;
+            targetComponent.tags[pair.Key] = pair.Value;
         }
     }
 }

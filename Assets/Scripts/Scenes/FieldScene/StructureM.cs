@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Pickup.Configs.Buildable.Structure;
+using Pickup.Utils.Tags;
 using Pickup.World;
 using Unity.Collections;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Pickup.Scenes.FieldScene
             }
         }
 
-        public readonly Dictionary<string, dynamic> statCollection = new ()
+        public readonly TagCompound tags = new ()
         {
             ["health"] = 100
         };

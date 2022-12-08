@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Pickup.Utils.Tags;
 using UnityEngine;
 
 namespace Pickup.World
@@ -11,13 +12,13 @@ namespace Pickup.World
 
         internal int[] tileMapData;
         internal int[] structureIDData;
-        internal Dictionary<string, dynamic>[] structureData;
+        internal TagCompound[] structureData;
         
         public FieldChunk(int baseTileId)
         {
             tileMapData = Enumerable.Repeat(baseTileId, Size * Size).ToArray();
             structureIDData = Enumerable.Repeat(0, Size * Size).ToArray();
-            structureData = Enumerable.Repeat<Dictionary<string, dynamic>>(null, Size * Size).ToArray();
+            structureData = Enumerable.Repeat<TagCompound>(null, Size * Size).ToArray();
         }
 
         public FieldChunk(RuleTile baseTile) : this(baseTile.name.GetHashCode())

@@ -6,8 +6,8 @@ namespace Pickup.Scenes.FieldScene
     {
         public int health
         {
-            get => statCollection["health"];
-            set => statCollection["health"] = value;
+            get => tags.GetInt("health");
+            set => tags["health"] = value;
         }
     }
 }

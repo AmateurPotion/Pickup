@@ -11,7 +11,7 @@ namespace Pickup.Configs.Buildable.Structure
 
         public override void Check(StructureM obj)
         {
-            var data = obj.statCollection;
+            var data = obj.tags;
         }
 
         public override void UpdateO(StructureM obj)
