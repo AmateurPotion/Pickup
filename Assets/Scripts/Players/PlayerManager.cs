@@ -1,15 +1,15 @@
 ﻿using System;
 using System.IO;
 using Cinemachine;
+using Pickup.Net;
 using Pickup.Net.FieldBuilder;
-using Pickup.World;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-namespace Pickup.Net
+namespace Pickup.Players
 {
     public class PlayerManager : MonoBehaviour
     {

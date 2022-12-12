@@ -24,11 +24,6 @@ namespace Pickup.Scenes.FieldScene
             ["health"] = 100
         };
 
-        private void Start()
-        {
-            Debug.Log("H");
-        }
-
         private void Update()
         {
             if (m_Type && type.update) type.UpdateO(this);

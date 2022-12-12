@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Pickup.Configs.Buildable;
-using Pickup.Configs.Buildable.Ground;
 using Pickup.Configs.Buildable.Structure;
 using Pickup.Contents;
 using Pickup.Net;
@@ -49,6 +47,8 @@ namespace Pickup
                 Destroy(gameObject);
                 return;
             }
+            
+            // Networking init
 
             // Check data space
             //if (!Directory.Exists(dataPath) && Application.platform == editor) Directory.CreateDirectory(dataPath);

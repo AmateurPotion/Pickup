@@ -6,7 +6,7 @@ using Pickup.Utils.Override;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Pickup.Net
+namespace Pickup.Players
 {
     public sealed class Controller : MonoBehaviour
     {

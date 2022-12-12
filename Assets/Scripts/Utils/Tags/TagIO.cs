@@ -2,12 +2,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
 using System.Text;
-using JetBrains.Annotations;
 
 namespace Pickup.Utils.Tags
 {
@@ -47,7 +45,9 @@ namespace Pickup.Utils.Tags
 
                 w.Write((byte)payloadId);
                 w.Write(v.Count);
+                #pragma warning disable
                 PayloadHandlers[payloadId].WriteList(w, v);
+                #pragma warning restore
             }, (v =>
             {
                 try
@@ -324,10 +324,13 @@ namespace Pickup.Utils.Tags
             public override IList CloneList(IList list) => CloneList((IList<T>)list);
 
             public virtual IList CloneList(IList<T> list) => new List<T>(list);
-
+            
+            #pragma warning disable
             public override object Default() => default(T);
+            #pragma warning restore
         }
 
+        #pragma warning disable
         private class ClassPayloadHandler<T> : PayloadHandler<T> where T : class
         {
             private readonly Func<T, T> m_Clone;
@@ -349,5 +352,6 @@ namespace Pickup.Utils.Tags
             
             public override object Default() => m_MakeDefault();
         }
+        #pragma warning restore
     }
 }

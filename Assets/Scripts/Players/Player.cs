@@ -1,10 +1,10 @@
 ﻿using Pickup.Contents.Players;
+using Pickup.Net;
 using Pickup.Utils;
 using Unity.Netcode;
-using Unity.Netcode.Components;
 using UnityEngine;
 
-namespace Pickup.Net
+namespace Pickup.Players
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Player : MonoBehaviour
@@ -14,8 +14,7 @@ namespace Pickup.Net
         public LineRenderer aim;
 
         [Header("Network")] 
-        public ulong id;
-        public ClientIO clientIO;
+        public NetworkPlayerBehavior netPlayer;
         
         [Header("Stats")] 
         public GaugeInt health = new(0, 1000, 1000);

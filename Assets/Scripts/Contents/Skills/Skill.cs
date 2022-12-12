@@ -1,5 +1,5 @@
 ﻿using System;
-using Pickup.Net;
+using Pickup.Players;
 
 namespace Pickup.Contents.Skills
 {

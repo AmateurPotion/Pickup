@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Pickup.Players;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Pickup.Net
 {
     public class ClientIO : NetworkIO
     {
-        private NetworkManager manager => NetworkManager.Singleton;
+        private static NetworkManager manager => NetworkManager.Singleton;
         public static ClientIO localClientIO;
 
         public Player player;

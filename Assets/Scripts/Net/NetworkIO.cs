@@ -1,4 +1,5 @@
 ﻿using System;
+using Pickup.Players;
 using Unity.Netcode;
 using Unity.Netcode.Components;
 using Unity.Netcode.Transports.UTP;
