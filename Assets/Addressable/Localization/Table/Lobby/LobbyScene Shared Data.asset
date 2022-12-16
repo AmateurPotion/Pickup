@@ -10,23 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Field Shared Data
+  m_Name: LobbyScene Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: Field
-  m_TableCollectionNameGuidString: 7525be1b55a11ad47bf0c56c3a88a0ca
+  m_TableCollectionName: LobbyScene
+  m_TableCollectionNameGuidString: 0fbb7831fe2a76a458049b0903e18a7c
   m_Entries:
-  - m_Id: 34664316928
-    m_Key: New Entry
+  - m_Id: 202344202240
+    m_Key: ManageWorld
+    m_Metadata:
+      m_Items: []
+  - m_Id: 797750820864
+    m_Key: ManageCharacter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 683749191155712
+    m_Key: Settings
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 6258074499206086657
+    rid: 2784067061546221599
   references:
     version: 2
     RefIds:
-    - rid: 6258074499206086657
+    - rid: 2784067061546221599
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1667014039354
+        m_CustomEpoch: 1670925487644

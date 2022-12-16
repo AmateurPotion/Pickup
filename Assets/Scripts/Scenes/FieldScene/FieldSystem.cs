@@ -44,22 +44,20 @@ namespace Pickup.Scenes.FieldScene
         {
             if(started) return;
             
-            switch (LobbySystem.sceneMoveMode)
+            if(LobbySystem.messenger.sceneMoveMode is not SceneMoveMode sceneMoveMode ||
+               LobbySystem.messenger.address is not string address) return;
+            
+            switch (sceneMoveMode)
             {
-                case SceneMoveMode.CreateGame:
+                case SceneMoveMode.Create:
                 {
                     
                     break;
                 }
 
-                case SceneMoveMode.LoadGame:
+                case SceneMoveMode.Join:
                 {
-                    break;
-                }
-                
-                case SceneMoveMode.JoinServer:
-                {
-                    NetworkIO.Connect(LobbySystem.address);
+                    NetworkIO.Connect(address);
                     break;
                 }
 
@@ -74,11 +72,6 @@ namespace Pickup.Scenes.FieldScene
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.H) && LobbySystem.sceneMoveMode != SceneMoveMode.JoinServer && 
-                !networkManager.IsHost && !networkManager.IsClient)
-            {
-                NetworkIO.Host(out _);
-            }
         }
     }
 }

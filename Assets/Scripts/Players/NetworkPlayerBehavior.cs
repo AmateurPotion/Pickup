@@ -18,7 +18,7 @@ namespace Pickup.Players
         [ServerRpc]
         private void SpawnPlayerEventServerRpc(ulong id)
         {
-            ((ServerIO)Vars.Instance.netIO).onPlayerSpawn.Invoke(id);
+            ((ServerIO)Assist.netIO).onPlayerSpawn.Invoke(id);
             D.Log(id);
         }
     }

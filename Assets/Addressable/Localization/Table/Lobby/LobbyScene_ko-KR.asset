@@ -10,14 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: Field_en-US
+  m_Name: LobbyScene_ko-KR
   m_EditorClassIdentifier: 
   m_LocaleId:
-    m_Code: en-US
-  m_SharedData: {fileID: 11400000, guid: 7525be1b55a11ad47bf0c56c3a88a0ca, type: 2}
+    m_Code: ko-KR
+  m_SharedData: {fileID: 11400000, guid: 0fbb7831fe2a76a458049b0903e18a7c, type: 2}
   m_Metadata:
     m_Items: []
-  m_TableData: []
+  m_TableData:
+  - m_Id: 202344202240
+    m_Localized: "\uC138\uACC4"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 797750820864
+    m_Localized: "\uCE90\uB9AD\uD130"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 683749191155712
+    m_Localized: "\uC124\uC815"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

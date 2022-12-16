@@ -17,14 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: c9171f845cd79ab449beb81c7ce04d13
   m_SerializeEntries:
-  - m_GUID: fd984e2abe0d5d5478cf1f14d0b0d768
-    m_Address: Field_ko-KR
-    m_ReadOnly: 1
-    m_SerializedLabels:
-    - Locale-ko-KR
-    - Preload
-  - m_GUID: fdc833294337d6946b394c6ddf2754f8
-    m_Address: Lobby_ko-KR
+  - m_GUID: f480cb941d807824dab2534edfd1c4c4
+    m_Address: LobbyScene_ko-KR
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-ko-KR

@@ -1,62 +1,48 @@
 ﻿using System.Collections.Generic;
-using TMPro;
+using SRF;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem.UI;
 
 namespace Pickup.Scenes.LobbyScene
 {
     public sealed class LobbySystem: MonoBehaviour
     {
         // Field Scene Messenger
-        public static SceneMoveMode sceneMoveMode { get; private set; } = SceneMoveMode.Err;
-        public static string address { get; private set; } = "";
+        public static dynamic messenger = new
+        {
+            sceneMoveMode = SceneMoveMode.Err,
+            address = ""
+        };
         
         [Header("Components")]
-        [SerializeField] private GameObject joinServerPanel;
-        [SerializeField] private TMP_InputField addressText;
-        [SerializeField] private List<GameObject> deletes = new();
+        [SerializeField] private new Camera camera;
+        [SerializeField] private GameObject worldPanel;
+        [SerializeField] private GameObject serverPanel;
 
-        public void CreateGame()
+        public void StartGame()
         {
-            sceneMoveMode = SceneMoveMode.CreateGame;
-            deletes.ForEach(Destroy);
-            SceneManager.LoadSceneAsync("Field", LoadSceneMode.Additive);
+            worldPanel.SetActive(true);
         }
-
-        public void LoadGame()
+        public void Join()
         {
-            deletes.ForEach(Destroy);
+            serverPanel.SetActive(true);
         }
-
-        public void JoinServer()
+        public void OpenSettings()
         {
-            if (!joinServerPanel.activeSelf)
-            {
-                joinServerPanel.SetActive(true);
-            }
         }
-
-        public void JoinServerReal()
+        internal void PrepareSceneMove()
         {
-            sceneMoveMode = SceneMoveMode.JoinServer;
-            address = addressText.text;
-            deletes.ForEach(Destroy);
-            SceneManager.LoadSceneAsync("Field", LoadSceneMode.Additive);
-            
-        }
-
-        public void CancelJoinServer()
-        {
-            joinServerPanel.SetActive(false);
+            Destroy(camera);
+            gameObject.RemoveComponentIfExists<EventSystem>();
+            gameObject.RemoveComponentIfExists<InputSystemUIInputModule>();
         }
     }
 
     public enum SceneMoveMode
     {
-        CreateGame,
-        LoadGame,
-        JoinServer,
+        Create,
+        Join,
         Err
     }
 }

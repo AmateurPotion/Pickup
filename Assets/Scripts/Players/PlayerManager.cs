@@ -52,7 +52,7 @@ namespace Pickup.Players
             });
             aimLine = self.aim;
             virtualCamera.Follow = self.transform;
-            self.name = Vars.Instance.uuid;
+            self.name = Assist.uuid;
         }
 
         private void Update()

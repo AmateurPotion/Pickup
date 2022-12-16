@@ -10,38 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: Lobby_en-US
+  m_Name: LobbyScene_en-US
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: en-US
-  m_SharedData: {fileID: 11400000, guid: bdb01f04e9247d64aaf27ab6d4aeb1a8, type: 2}
+  m_SharedData: {fileID: 11400000, guid: 0fbb7831fe2a76a458049b0903e18a7c, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 40536342528
-    m_Localized: Create Game
+  - m_Id: 202344202240
+    m_Localized: World
     m_Metadata:
       m_Items: []
-  - m_Id: 299211653120
-    m_Localized: Join Server
+  - m_Id: 797750820864
+    m_Localized: Character
     m_Metadata:
       m_Items: []
-  - m_Id: 1585910874112
-    m_Localized: Load Game
-    m_Metadata:
-      m_Items: []
-  - m_Id: 7773549461504
-    m_Localized: Enter Address...
-    m_Metadata:
-      m_Items: []
-  - m_Id: 9467389771776
-    m_Localized: 'Server
-
-      Address'
-    m_Metadata:
-      m_Items: []
-  - m_Id: 43615043158016
-    m_Localized: Cancel
+  - m_Id: 683749191155712
+    m_Localized: Settings
     m_Metadata:
       m_Items: []
   references:

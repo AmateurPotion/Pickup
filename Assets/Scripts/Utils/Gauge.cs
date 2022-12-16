@@ -16,17 +16,16 @@ namespace Pickup.Utils
             get => _value;
             set
             {
-                T t = value.CompareTo(min) < 0 ? min :
+                var t = value.CompareTo(min) < 0 ? min :
                     value.CompareTo(max) > 0 ? max : value;
-                if (!t.Equals(_value))
-                {
-                    _value = t;
-                    onChange?.Invoke(this);
-                }
+
+                if (t.Equals(_value)) return;
+                
+                _value = t;
+                onChange?.Invoke(this);
             }
         }
 
-        //value가 가지는 정보는 굉장히 국소적인듯
         public UnityEvent<Gauge<T>> onChange;
 
         public Gauge(T min, T max, T val)
@@ -49,12 +48,6 @@ namespace Pickup.Utils
         public Gauge(T min, T max) : this(min, max, min) { }
 
         public Gauge(T max) : this(default, max) { }
-
-        public void AddListener(UnityAction<Gauge<T>> action)
-        {
-            action(this);
-            onChange.AddListener(action);
-        }
 
         public abstract float GetFillRatio();
 

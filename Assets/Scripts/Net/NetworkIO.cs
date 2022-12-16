@@ -13,8 +13,8 @@ namespace Pickup.Net
         private static NetworkManager manager => NetworkManager.Singleton;
         public static ulong netId => manager.LocalClientId;
 
-        private static GameObject hostIOPrefab => Vars.Instance.networkPrefabs["HostIO"];
-        private static GameObject clientIOPrefab => Vars.Instance.networkPrefabs["ClientIO"];
+        internal static GameObject hostIOPrefab;
+        internal static GameObject clientIOPrefab;
 
         public const ushort DefaultPort = 7777;
 
@@ -64,7 +64,7 @@ namespace Pickup.Net
             while (!manager.IsListening) { }
             
             var hostObj = Instantiate(hostIOPrefab);
-            Vars.Instance.netIO = hostObj.GetComponent<HostIO>();
+            Assist.netIO = hostObj.GetComponent<HostIO>();
             hostObj.name = "HostIO-Instance";
             hostObj.GetComponent<NetworkObject>().Spawn();
             
@@ -80,7 +80,7 @@ namespace Pickup.Net
         {
             var g = Instantiate(clientIOPrefab);
             g.name = $"ClientIO-{clientId}";
-            var clientIO = ((ServerIO)Vars.Instance.netIO).clients[clientId] = g.GetComponent<ClientIO>();
+            var clientIO = ((ServerIO)Assist.netIO).clients[clientId] = g.GetComponent<ClientIO>();
             g.GetComponent<NetworkObject>().SpawnWithOwnership(clientId);
             var playerObj = manager.ConnectedClients[clientId].PlayerObject;
             playerObj.ChangeOwnership(clientId);
@@ -90,7 +90,7 @@ namespace Pickup.Net
 
         private static void DisConnectClient(ulong clientId)
         {
-            ((ServerIO)Vars.Instance.netIO).clients.Remove(clientId);
+            ((ServerIO)Assist.netIO).clients.Remove(clientId);
         }
 
         public override void OnDestroy()
@@ -112,7 +112,7 @@ namespace Pickup.Net
         [ClientRpc]
         public void SendMessageClientRpc(string data, ulong id)
         {
-            if (id == Vars.Instance.networkManager.LocalClientId)
+            if (id == NetworkManager.LocalClientId)
             {
                 onMessageReceive?.Invoke(data);
             }

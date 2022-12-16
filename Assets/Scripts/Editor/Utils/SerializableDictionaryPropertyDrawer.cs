@@ -20,7 +20,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 	static GUIContent s_tempContent = new GUIContent();
 
 
-	class ConflictState
+	private class ConflictState
 	{
 		public object conflictKey = null;
 		public object conflictValue = null;
@@ -31,7 +31,7 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		public float conflictLineHeight = 0f;
 	}
 
-	struct PropertyIdentity
+	private struct PropertyIdentity
 	{
 		public PropertyIdentity(SerializedProperty property)
 		{
@@ -43,9 +43,9 @@ public class SerializableDictionaryPropertyDrawer : PropertyDrawer
 		public string propertyPath;
 	}
 
-	static Dictionary<PropertyIdentity, ConflictState> s_conflictStateDict = new Dictionary<PropertyIdentity, ConflictState>();
+	private static Dictionary<PropertyIdentity, ConflictState> s_conflictStateDict = new Dictionary<PropertyIdentity, ConflictState>();
 
-	enum Action
+	private enum Action
 	{
 		None,
 		Add,
