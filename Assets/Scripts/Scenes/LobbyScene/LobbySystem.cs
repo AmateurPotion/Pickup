@@ -28,9 +28,9 @@ namespace Pickup.Scenes.LobbyScene
         {
             serverPanel.SetActive(true);
         }
-        public void OpenSettings()
-        {
-        }
+
+        public void OpenSettings() => Assist.panelManager.setting.Open();
+        
         internal void PrepareSceneMove()
         {
             Destroy(camera);

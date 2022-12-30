@@ -11,30 +11,31 @@ namespace Pickup.Contents
 {
     public sealed class ContentLoader : MonoBehaviour
     {
+        [Header("Addressable")]
         public AssetLabelReference tileRef = new (){labelString = "Tiles"};
         public AssetLabelReference structureRef = new(){labelString = "Structure"};
-        
-        // Panels
-        [SerializeField] private Canvas panelCanvas;
-        [SerializeField] private Panel settingPanel;
-        
-        // Net
+
+        [Header("NetworkObject")]
         public GameObject hostIOPrefab;
         public GameObject clientIOPrefab;
 
+        [Header("Panel")]
+        [SerializeField] private Canvas panelCanvas;
+        [SerializeField] private Panel settingPanel;
+
         private void Awake()
         {
-            var loadTasks = new List<AsyncOperationHandle>();
-            
-            loadTasks.Add(Addressables.LoadAssetsAsync<RuleTile>(tileRef, config =>
+            var loadTasks = new List<AsyncOperationHandle>
             {
-                Assist.contents.tiles[config.name] = config;
-            }));
-            
-            loadTasks.Add(Addressables.LoadAssetsAsync<StructureC>(structureRef, config =>
-            {
-                Assist.contents.structures[config.name] = config;
-            }));
+                Addressables.LoadAssetsAsync<RuleTile>(tileRef, config =>
+                {
+                    Assist.contents.tiles[config.name] = config;
+                }),
+                Addressables.LoadAssetsAsync<StructureC>(structureRef, config =>
+                {
+                    Assist.contents.structures[config.name] = config;
+                })
+            };
 
             // finish load contents
             foreach (var task in loadTasks)
@@ -57,10 +58,19 @@ namespace Pickup.Contents
 
             NetworkIO.clientIOPrefab = clientIOPrefab;
             NetworkIO.hostIOPrefab = hostIOPrefab;
-            
+
             // loading panel
             DontDestroyOnLoad(panelCanvas);
-            Assist.panelManager.setting = settingPanel;
+
+            var panelManager = Assist.panelManager;
+            
+            panelManager.canvas = panelCanvas;
+            panelManager.setting = settingPanel;
+            
+            foreach (var panel in panelManager.panelDic)
+            {
+                panel.Value.gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -1,13 +1,12 @@
-﻿using System;
-using Pickup.Utils.Attributes;
+﻿using Pickup.Utils.Attributes;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace Pickup.UI
 {
     public class Panel : MonoBehaviour
     {
-        [SerializeField] private Image background;
+        public UnityEvent onOpen = new ();
         [SerializeField, GetSet("open")] private bool _open = false;
         public bool open
         {
@@ -16,7 +15,10 @@ namespace Pickup.UI
             {
                 _open = value;
                 gameObject.SetActive(value);
+                onOpen.Invoke();
             }
         }
+
+        public void Open() => open = true;
     }
 }

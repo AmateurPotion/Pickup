@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using Pickup.Configs.Buildable.Structure;
 using Pickup.Contents;
 using Pickup.Net;
-using Pickup.UI;
-using Pickup.Utils;
-using Unity.Netcode;
+using Pickup.UI.Panels;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using UnityEngine.ResourceManagement.AsyncOperations;
-using UnityEngine.Tilemaps;
 
 namespace Pickup
 {
@@ -22,7 +15,7 @@ namespace Pickup
         
         // Managers
         public static readonly ContentManager contents = new();
-        public static readonly PanelManager panelManager = new();
+        public static readonly MainPanelManager panelManager = new();
 
         // Network
         public static NetworkIO netIO;
