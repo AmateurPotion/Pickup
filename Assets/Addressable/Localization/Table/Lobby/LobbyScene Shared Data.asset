@@ -16,11 +16,11 @@ MonoBehaviour:
   m_TableCollectionNameGuidString: 0fbb7831fe2a76a458049b0903e18a7c
   m_Entries:
   - m_Id: 202344202240
-    m_Key: ManageWorld
+    m_Key: SinglePlay
     m_Metadata:
       m_Items: []
   - m_Id: 797750820864
-    m_Key: ManageCharacter
+    m_Key: MultiPlay
     m_Metadata:
       m_Items: []
   - m_Id: 683749191155712

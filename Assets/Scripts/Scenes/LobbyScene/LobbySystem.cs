@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Pickup.Graphics.UI.Panels;
+using Pickup.Utils.Attributes;
 using SRF;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -17,25 +20,55 @@ namespace Pickup.Scenes.LobbyScene
         
         [Header("Components")]
         [SerializeField] private new Camera camera;
-        [SerializeField] private GameObject worldPanel;
-        [SerializeField] private GameObject serverPanel;
+        [SerializeField] private List<DrawerPanel> panels;
 
-        public void StartGame()
+        [Header("Status")] 
+        public bool multiPlay = false;
+
+        [SerializeField, GetSet("panelIndex")] private int _panelIndex = 1;
+        /// <summary>
+        /// 0 - World / 1 - Main / 2 - Character
+        /// </summary>
+        public int panelIndex
         {
-            worldPanel.SetActive(true);
+            get => _panelIndex;
+            set
+            {
+                foreach (var p in panels)
+                {
+                    p.positionIndex = value;
+                }
+            }
         }
-        public void Join()
+        [SerializeField, GetSet("panelMoveSpeed")] private float _panelMoveSpeed = 800;
+
+        public float panelMoveSpeed
         {
-            serverPanel.SetActive(true);
+            get => _panelMoveSpeed;
+            set
+            {
+                _panelMoveSpeed = value;
+                foreach (var p in panels)
+                {
+                    p.moveSpeed = value;
+                }
+            }
+        }
+
+        public void PlaySetup(bool multi)
+        {
+            multiPlay = multi;
         }
 
         public void OpenSettings() => Assist.panelManager.setting.Open();
         
-        internal void PrepareSceneMove()
+        internal void StartGame()
         {
             Destroy(camera);
             gameObject.RemoveComponentIfExists<EventSystem>();
             gameObject.RemoveComponentIfExists<InputSystemUIInputModule>();
+            
+            
         }
     }
 

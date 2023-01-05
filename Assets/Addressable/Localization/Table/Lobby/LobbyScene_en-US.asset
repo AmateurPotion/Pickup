@@ -19,11 +19,11 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 202344202240
-    m_Localized: World
+    m_Localized: SinglePlay
     m_Metadata:
       m_Items: []
   - m_Id: 797750820864
-    m_Localized: Character
+    m_Localized: MultiPlay
     m_Metadata:
       m_Items: []
   - m_Id: 683749191155712

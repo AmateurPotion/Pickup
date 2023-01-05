@@ -1,5 +1,5 @@
 ﻿using System;
-using Pickup.Configs.Buildable.Structure;
+using Pickup.Contents.Configs.Buildable.Structure;
 using Pickup.Utils.Tags;
 using UnityEngine;
 

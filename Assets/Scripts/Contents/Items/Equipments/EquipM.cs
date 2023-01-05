@@ -1,5 +1,5 @@
 ﻿using System;
-using Pickup.Configs;
+using Pickup.Contents.Configs;
 using UnityEngine;
 
 namespace Pickup.Contents.Items.Equipments

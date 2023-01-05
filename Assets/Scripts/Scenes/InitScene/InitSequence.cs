@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Pickup.Contents;
 using Pickup.Utils;
 using Unity.Netcode;
 using UnityEngine;
@@ -7,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 namespace Pickup.Scenes.InitScene
 {
+    [RequireComponent(typeof(ContentLoader))]
     public class InitSequence : MonoBehaviour
     {
         public GaugeInt loadingProgress = new (0, 100, 0);
@@ -29,7 +31,9 @@ namespace Pickup.Scenes.InitScene
             }
             else
             {
-                Screen.fullScreen = false;
+                //Screen.fullScreen = false;
+                GetComponent<ContentLoader>().Load();
+                Assist.Initialize();
                 SceneManager.LoadSceneAsync("Lobby");
             }
         }

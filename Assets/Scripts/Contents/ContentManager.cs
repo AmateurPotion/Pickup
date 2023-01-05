@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Pickup.Configs.Buildable.Structure;
+using Pickup.Contents.Configs.Buildable.Structure;
 using UnityEngine;
 
 namespace Pickup.Contents

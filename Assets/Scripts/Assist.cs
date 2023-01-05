@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
 using Pickup.Contents;
+using Pickup.FileSystem;
 using Pickup.Net;
-using Pickup.UI.Panels;
+using Pickup.Graphics.UI.Panels;
 using UnityEngine;
 
 namespace Pickup
@@ -16,12 +17,14 @@ namespace Pickup
         // Managers
         public static readonly ContentManager contents = new();
         public static readonly MainPanelManager panelManager = new();
+        public static readonly FSManager fs = new();
 
         // Network
         public static NetworkIO netIO;
 
-        private static void Initialize()
+        internal static void Initialize()
         {
+            fs.Init();
             uuid = PlayerPrefs.GetString("uuid", Guid.NewGuid().ToString());
             //PlayerPrefs.SetString("uuid", uuid);
             //PlayerPrefs.Save();

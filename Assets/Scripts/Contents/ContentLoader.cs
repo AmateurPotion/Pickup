@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Pickup.Configs.Buildable.Structure;
+using Pickup.Contents.Configs.Buildable.Structure;
 using Pickup.Net;
-using Pickup.UI;
+using Pickup.Graphics.UI;
+using Pickup.Graphics.UI.Panels;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -23,7 +24,7 @@ namespace Pickup.Contents
         [SerializeField] private Canvas panelCanvas;
         [SerializeField] private Panel settingPanel;
 
-        private void Awake()
+        public void Load()
         {
             var loadTasks = new List<AsyncOperationHandle>
             {

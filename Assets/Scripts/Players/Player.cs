@@ -1,4 +1,4 @@
-﻿using Pickup.Contents.Players;
+﻿using Pickup.Contents.Items;
 using Pickup.Net;
 using Pickup.Utils;
 using Unity.Netcode;
