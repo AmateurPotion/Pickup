@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Pickup.Net;
+using Pickup.Players;
+using Pickup.Scenes.InitScene;
 using Pickup.Scenes.LobbyScene;
 using Pickup.World;
 using Unity.Netcode;
@@ -19,6 +21,9 @@ namespace Pickup.Scenes.FieldScene
         [SerializeField] private Tilemap groundMap;
         [SerializeField] private Tilemap structureMap;
         public PolygonCollider2D cameraBound;
+
+        [Header("GameObject")] 
+        public Player player;
 
         [Header("GameStatus")] 
         public bool isMultiplayer = false;
@@ -42,15 +47,31 @@ namespace Pickup.Scenes.FieldScene
 
         private void Start()
         {
-            if(started) return;
+            if(started || !InitSequence.inited) return;
+            var m = LobbySystem.messenger;
             
-            if(LobbySystem.messenger.sceneMoveMode is not SceneMoveMode sceneMoveMode ||
-               LobbySystem.messenger.address is not string address) return;
-            
+            if(m.sceneMoveMode is not SceneMoveMode sceneMoveMode ||
+               m.address is not string address ||
+               m.multiPlay is not bool multiPlay ) return;
+
             switch (sceneMoveMode)
             {
                 case SceneMoveMode.Create:
                 {
+                    isMultiplayer = multiPlay;
+                    if (multiPlay)
+                    {
+                        // multi
+                        Destroy(player.gameObject);
+                    }
+                    else
+                    {
+                        // single
+                        PlayerManager.Instance.InitPlayer(player);
+                        
+                        // init events
+                        player.Init();
+                    }
                     
                     break;
                 }
@@ -64,10 +85,13 @@ namespace Pickup.Scenes.FieldScene
                 case SceneMoveMode.Err:
                 {
                     break;
-                }    
+                }
+
+                default:
+                {
+                    break;
+                }
             }
-            
-            SceneManager.UnloadSceneAsync("Lobby");
         }
 
         private void Update()

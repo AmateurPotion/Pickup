@@ -36,10 +36,9 @@ namespace Pickup.Players
         private bool fullHealth = true;
         public void InitPlayer(Player self)
         {
-            if(player) return;
-            
             //aimLine.gameObject.SetActive(true);
             player = self;
+            
             self.health.onChange.AddListener(_ =>
             {
                 var ratio = self.health.GetFillRatio();
@@ -50,6 +49,7 @@ namespace Pickup.Players
                     healthImage.color = new Color(healthImage.color.r, healthImage.color.g, healthImage.color.b, 1 - ratio);
                 }
             });
+            
             aimLine = self.aim;
             virtualCamera.Follow = self.transform;
             self.name = Assist.uuid;
@@ -71,11 +71,6 @@ namespace Pickup.Players
             
             if (Input.GetKeyDown(KeyCode.H) && NetworkIO.Host(out var hostIO))
             {
-            }
-
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                File.Create(Path.Combine(Application.dataPath, "test.txt"));
             }
         }
 

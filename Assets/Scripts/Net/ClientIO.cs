@@ -40,7 +40,7 @@ namespace Pickup.Net
         {
             if (manager.IsServer)
             {
-                player.Move(direction);
+                player.onMove.Invoke(direction);
             }
         }
     }

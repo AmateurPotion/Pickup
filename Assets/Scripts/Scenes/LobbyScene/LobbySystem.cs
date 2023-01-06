@@ -6,17 +6,14 @@ using SRF;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.SceneManagement;
 
 namespace Pickup.Scenes.LobbyScene
 {
     public sealed class LobbySystem: MonoBehaviour
     {
         // Field Scene Messenger
-        public static dynamic messenger = new
-        {
-            sceneMoveMode = SceneMoveMode.Err,
-            address = ""
-        };
+        public static dynamic messenger;
         
         [Header("Components")]
         [SerializeField] private new Camera camera;
@@ -62,13 +59,16 @@ namespace Pickup.Scenes.LobbyScene
 
         public void OpenSettings() => Assist.panelManager.setting.Open();
         
-        internal void StartGame()
+        public void StartGame()
         {
-            Destroy(camera);
-            gameObject.RemoveComponentIfExists<EventSystem>();
-            gameObject.RemoveComponentIfExists<InputSystemUIInputModule>();
+            messenger = new
+            {
+                sceneMoveMode = SceneMoveMode.Create,
+                address = "",
+                multiPlay
+            };
             
-            
+            SceneManager.LoadSceneAsync("Field");
         }
     }
 

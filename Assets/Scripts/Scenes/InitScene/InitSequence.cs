@@ -11,7 +11,7 @@ namespace Pickup.Scenes.InitScene
     [RequireComponent(typeof(ContentLoader))]
     public class InitSequence : MonoBehaviour
     {
-        public GaugeInt loadingProgress = new (0, 100, 0);
+        public static bool inited = false;
         private void Start()
         {
             if (Application.platform == RuntimePlatform.LinuxServer ||
@@ -34,6 +34,7 @@ namespace Pickup.Scenes.InitScene
                 //Screen.fullScreen = false;
                 GetComponent<ContentLoader>().Load();
                 Assist.Initialize();
+                inited = true;
                 SceneManager.LoadSceneAsync("Lobby");
             }
         }

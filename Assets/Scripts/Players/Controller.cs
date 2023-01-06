@@ -19,7 +19,7 @@ namespace Pickup.Players
         {
             if (inMoveOperation)
             {
-                manager.player.Move(moveDirection);
+                manager.player.onMove.Invoke(moveDirection);
             }
         }
 

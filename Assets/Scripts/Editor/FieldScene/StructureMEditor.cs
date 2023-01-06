@@ -14,9 +14,6 @@ public class StructureMEditor : Editor
     {
         base.OnInspectorGUI();
         var targetComponent = (StructureM)target;
-        var typeName = targetComponent.type ? targetComponent.type.GetType().Name : "undefined";
-        
-        GUILayout.Label($"Structure type / {typeName}");
         
         m_Queue.Clear();
         

@@ -1,14 +1,19 @@
 ﻿using Pickup.Contents.Items;
 using Pickup.Net;
+using Pickup.Scenes.LobbyScene;
 using Pickup.Utils;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Pickup.Players
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class Player : MonoBehaviour
     {
+        [Header("Events")]
+        public UnityEvent<Vector2> onMove = new();
+        
         [Header("Components")]
         [SerializeField] private Rigidbody2D body;
         public LineRenderer aim;
@@ -25,15 +30,26 @@ namespace Pickup.Players
         public SerializableDictionary<int, ItemStack> items;
         public Weapon weapon;
 
-        public void Move(Vector2 direction)
+        public void Init(bool multiPlay = false)
         {
-            if (!NetworkManager.Singleton.IsHost)
+            if (!multiPlay)
             {
-                ClientIO.localClientIO.MovePlayerServerRpc(direction);              
+                // single
+                onMove.AddListener(direction =>
+                {
+                    body.AddForce(direction * speed);
+                });
             }
             else
             {
-                body.AddForce(direction * speed);
+                // multiPlay
+                onMove.AddListener(direction =>
+                {
+                    if (!NetworkManager.Singleton.IsHost)
+                    {
+                        ClientIO.localClientIO.MovePlayerServerRpc(direction);              
+                    }
+                });
             }
         }
 

@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Pickup.Contents.Configs.Buildable.Structure;
 using UnityEngine;
 
 namespace Pickup.Contents
@@ -7,12 +6,12 @@ namespace Pickup.Contents
     public sealed class ContentManager
     {
         public readonly Dictionary<string, RuleTile> tiles;
-        public readonly Dictionary<string, StructureC> structures;
+        public readonly Dictionary<string, GameObject> structures;
         
         public ContentManager()
         {
             tiles = new Dictionary<string, RuleTile>();
-            structures = new Dictionary<string, StructureC>();
+            structures = new Dictionary<string, GameObject>();
         }
     }
 }

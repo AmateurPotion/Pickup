@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Pickup.Contents.Configs.Buildable.Structure;
 using Pickup.Net;
 using Pickup.Graphics.UI;
 using Pickup.Graphics.UI.Panels;
@@ -26,35 +25,26 @@ namespace Pickup.Contents
 
         public void Load()
         {
-            var loadTasks = new List<AsyncOperationHandle>
+            var loadTasks = new Dictionary<string, AsyncOperationHandle>()
             {
-                Addressables.LoadAssetsAsync<RuleTile>(tileRef, config =>
+                ["Tiles"] = Addressables.LoadAssetsAsync<RuleTile>(tileRef, config =>
                 {
                     Assist.contents.tiles[config.name] = config;
                 }),
-                Addressables.LoadAssetsAsync<StructureC>(structureRef, config =>
+                ["Structures"] = Addressables.LoadAssetsAsync<GameObject>(structureRef, obj =>
                 {
-                    Assist.contents.structures[config.name] = config;
+                    Assist.contents.structures[obj.name] = obj;
                 })
             };
 
             // finish load contents
             foreach (var task in loadTasks)
             {
-                task.WaitForCompletion();
-                switch (task.Result)
-                {
-                    case List<RuleTile> list:
-                    {
-                        Debug.Log($"Tiles {list.Count} loaded");
-                        break;
-                    }
-                    case List<StructureC> list:
-                    {
-                        Debug.Log($"Structures {list.Count} loaded");
-                        break;
-                    }
-                }
+                task.Value.WaitForCompletion();
+
+                var list = (List<object>)task.Value.Result;
+                
+                Debug.Log($"{task.Key} {list.Count} loaded");
             }
 
             NetworkIO.clientIOPrefab = clientIOPrefab;
