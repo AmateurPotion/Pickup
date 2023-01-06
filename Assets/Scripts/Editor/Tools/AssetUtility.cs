@@ -29,16 +29,5 @@ namespace Pickup.Editor.Tools
                 }
             }
         }
-
-        [MenuItem("Test/Test Method")]
-        private static void Test()
-        {
-            Debug.Log(JsonConvert.SerializeObject(new
-            {
-                test = "1",
-                la = "12"
-            }));
-        }
-
     }
 }

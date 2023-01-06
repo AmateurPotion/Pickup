@@ -17,8 +17,8 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: f3acfa0d59a6ff3439dfc2a2e456b2e9
   m_SerializeEntries:
-  - m_GUID: ca063cc55977b0746a4dee864414537a
-    m_Address: Structure
+  - m_GUID: 3439f1ffb615bd2458d4c020af00a1dc
+    m_Address: Assets/Addressable/Contents/Structure
     m_ReadOnly: 0
     m_SerializedLabels:
     - Structure

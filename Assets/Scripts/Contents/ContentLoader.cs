@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Pickup.Net;
 using Pickup.Graphics.UI;
@@ -42,7 +43,7 @@ namespace Pickup.Contents
             {
                 task.Value.WaitForCompletion();
 
-                var list = (List<object>)task.Value.Result;
+                var list = (IList)task.Value.Result;
                 
                 Debug.Log($"{task.Key} {list.Count} loaded");
             }
