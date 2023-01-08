@@ -1,4 +1,5 @@
-﻿using System;
+﻿#if UNITY_EDITOR
+
 using UnityEditor;
 using UnityEngine;
 
@@ -22,16 +23,8 @@ namespace Pickup.Editor.Tools
             if (Application.isPlaying)
             {
                 EditorGUILayout.LabelField("Structures", bold);
-                foreach (var structure in Assist.contents.structures)
-                {
-                    EditorGUILayout.ObjectField(structure.Key, structure.Value, typeof(GameObject), false);
-                }
                 
                 EditorGUILayout.LabelField("Tiles", bold);
-                foreach (var structure in Assist.contents.tiles)
-                {
-                    EditorGUILayout.ObjectField(structure.Key, structure.Value, typeof(RuleTile), false);
-                }
             }
             else
             {
@@ -41,3 +34,5 @@ namespace Pickup.Editor.Tools
         }
     }
 }
+
+#endif

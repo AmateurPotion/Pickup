@@ -37,7 +37,7 @@ namespace Pickup.Scenes.LobbyScene
                 }
             }
         }
-        [SerializeField, GetSet("panelMoveSpeed")] private float _panelMoveSpeed = 800;
+        [SerializeField, GetSet("panelMoveSpeed")] private float _panelMoveSpeed = 1600;
 
         public float panelMoveSpeed
         {

@@ -4,9 +4,10 @@ using UnityEngine;
 
 namespace Pickup.FileSystem
 {
+    // ReSharper disable once InconsistentNaming
     public sealed class FSManager
     {
-        public string root;
+        public readonly string root;
         
         public FSManager()
         {

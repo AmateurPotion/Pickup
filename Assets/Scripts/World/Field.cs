@@ -1,43 +1,30 @@
 ﻿using System;
-using Pickup.Utils;
+using System.Collections.Generic;
+using Pickup.Contents.Configs.Structures;
+using Pickup.Scenes.FieldScene;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Tilemaps;
+using UnityEngine.Pool;
 
 namespace Pickup.World
 {
-    [Serializable]
     public class Field
     {
-        [Header("Data")]
-        [SerializeField] internal SerializableDictionary<Vector2Int, TileObject> dataMap;
-
-        public UnityEvent<Vector2Int, TileObject> OnTileChange = new (); 
-
-        public Field()
-        {
-        }
-
-        public void SyncTilemap(Tilemap tilemap)
-        {
-            
-        }
+        protected readonly ObjectPool<StructureM> _pool;
         
-        public bool TryGetTile(int x, int y, out TileObject tile) => dataMap.TryGetValue(new Vector2Int(x, y), out tile);
-
-        public void SetTile(int x, int y, TileObject tile)
+        public Field(ObjectPool<StructureM> pool)
         {
-            var position = new Vector2Int(x, y);
-            OnTileChange.Invoke(position, tile);
-            dataMap[position] = tile;
+            _pool = pool;
         }
 
-        internal void JustSetTile(int x, int y, TileObject tile) => dataMap[new(x, y)] = tile; 
-
-        public TileObject this[int x, int y]
+        public StructureM SpawnStructure<T>(string id, Vector2Int position) where T : StructureC<T>
         {
-            get => dataMap[new Vector2Int(x, y)];
-            set => SetTile(x, y, value);
+            var config= StructureC<T>.GetInstance(id);
+            var result = _pool.Get();
+            result.name = $"{nameof(config)}_{id}";
+            result.transform.position = new Vector3(position.x, position.y);
+            config.Alloc(result);
+            
+            return result;
         }
     }
 }

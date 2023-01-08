@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Pickup.Editor.Tools
 {

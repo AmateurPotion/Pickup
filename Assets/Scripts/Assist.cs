@@ -15,9 +15,9 @@ namespace Pickup
         public static string dataPath => Path.Combine(Application.dataPath, "Data");
         
         // Managers
-        public static readonly ContentManager contents = new();
         public static readonly MainPanelManager panelManager = new();
         public static readonly FSManager fs = new();
+        public static readonly TileManager tiles = new();
 
         // Network
         public static NetworkIO netIO;

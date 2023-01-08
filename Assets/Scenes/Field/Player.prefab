@@ -109,7 +109,7 @@ MonoBehaviour:
     onChange:
       m_PersistentCalls:
         m_Calls: []
-  speed: 35
+  speed: 5
   items:
     m_keys: 
     m_values: []

@@ -12,10 +12,6 @@ namespace Pickup.Contents
 {
     public sealed class ContentLoader : MonoBehaviour
     {
-        [Header("Addressable")]
-        public AssetLabelReference tileRef = new (){labelString = "Tiles"};
-        public AssetLabelReference structureRef = new(){labelString = "Structure"};
-
         [Header("NetworkObject")]
         public GameObject hostIOPrefab;
         public GameObject clientIOPrefab;
@@ -26,28 +22,6 @@ namespace Pickup.Contents
 
         public void Load()
         {
-            var loadTasks = new Dictionary<string, AsyncOperationHandle>()
-            {
-                ["Tiles"] = Addressables.LoadAssetsAsync<RuleTile>(tileRef, config =>
-                {
-                    Assist.contents.tiles[config.name] = config;
-                }),
-                ["Structures"] = Addressables.LoadAssetsAsync<GameObject>(structureRef, obj =>
-                {
-                    Assist.contents.structures[obj.name] = obj;
-                })
-            };
-
-            // finish load contents
-            foreach (var task in loadTasks)
-            {
-                task.Value.WaitForCompletion();
-
-                var list = (IList)task.Value.Result;
-                
-                Debug.Log($"{task.Key} {list.Count} loaded");
-            }
-
             NetworkIO.clientIOPrefab = clientIOPrefab;
             NetworkIO.hostIOPrefab = hostIOPrefab;
 

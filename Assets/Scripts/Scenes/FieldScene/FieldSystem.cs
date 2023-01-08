@@ -7,6 +7,8 @@ using Pickup.Scenes.LobbyScene;
 using Pickup.World;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
@@ -17,37 +19,55 @@ namespace Pickup.Scenes.FieldScene
         public static FieldSystem Instance { get; private set; }
 
         [Header("Components")] 
-        public Field field;
         [SerializeField] private Tilemap groundMap;
-        [SerializeField] private Tilemap structureMap;
+        [SerializeField] private GameObject structureMap;
         public PolygonCollider2D cameraBound;
 
         [Header("GameObject")] 
         public Player player;
+        [SerializeField] private GameObject structurePool;
+        [SerializeField] private GameObject originalStructure;
 
         [Header("GameStatus")] 
+        public Field field;
         public bool isMultiplayer = false;
         // network
-        private NetworkManager networkManager => NetworkManager.Singleton;
-        // static
-        public static bool started = false;
-        
+        [SerializeField]
+        private NetworkManager networkManager = NetworkManager.Singleton;
+
         private void Awake()
         {
-            if (Instance && Instance != this)
+            if ((Instance && Instance != this) || !InitSequence.inited)
             {
                 Destroy(gameObject);
                 return;
             }
-
-            field = new Field();
+            Debug.Log(Assist.tiles["Wall"]);
+            field = new Field(new ObjectPool<StructureM>(() =>
+            {
+                // Create
+                var obj = Instantiate(originalStructure, structureMap.transform);
+                return obj.GetComponent<StructureM>();
+            }, obj =>
+            {
+                // OnGet
+                obj.transform.parent = structureMap.transform;
+            }, obj =>
+            {
+                // OnRelease
+                obj.Release();
+                obj.transform.parent = structurePool.transform;
+            }, obj =>
+            {
+                // onDestroy
+            }));
 
             Instance = this;
         }
 
         private void Start()
         {
-            if(started || !InitSequence.inited) return;
+            if(!InitSequence.inited) return;
             var m = LobbySystem.messenger;
             
             if(m.sceneMoveMode is not SceneMoveMode sceneMoveMode ||

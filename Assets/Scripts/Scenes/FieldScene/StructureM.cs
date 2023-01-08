@@ -1,5 +1,5 @@
-﻿using System;
-using Pickup.Utils.Tags;
+﻿using Pickup.Utils.Tags;
+using SRF;
 using UnityEngine;
 
 namespace Pickup.Scenes.FieldScene
@@ -11,5 +11,9 @@ namespace Pickup.Scenes.FieldScene
             ["health"] = 100
         };
 
+        public void Release()
+        {
+            transform.DestroyChildren();
+        }
     }
 }
